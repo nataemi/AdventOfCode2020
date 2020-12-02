@@ -3,6 +3,7 @@ package com.adventofcode.adventofcode2020.tasks;
 import com.adventofcode.adventofcode2020.utils.Converter;
 import com.adventofcode.adventofcode2020.utils.TxtFileReader;
 
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
