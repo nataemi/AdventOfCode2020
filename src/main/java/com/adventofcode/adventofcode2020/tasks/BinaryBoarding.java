@@ -1,5 +1,6 @@
 package com.adventofcode.adventofcode2020.tasks;
 
+import com.adventofcode.adventofcode2020.utils.Converter;
 import com.adventofcode.adventofcode2020.utils.TxtFileReader;
 
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ public class BinaryBoarding {
     }
 
     static int calculateSeatId(String seat){
-        List<String> partitions = seat.chars().mapToObj(Character::toString).collect(Collectors.toList());
+        List<String> partitions = Converter.convertStringToLetterStringList(seat);
         List<String> rowPartitions = partitions.subList(0,7);
         List<String> columnPartitions = partitions.subList(7,10);
         int minRowNb = getNbWithBinarySearch(rowPartitions, MAXROWNB, "F", "B");
