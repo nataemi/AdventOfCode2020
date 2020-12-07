@@ -14,6 +14,10 @@ public class Converter {
         return from.stream().map(func).collect(Collectors.toList());
     }
 
+    public static List<String> convertStringToLetterStringList(String string){
+        return string.chars().mapToObj(Character::toString).collect(Collectors.toList());
+    }
+
 }
 
 
