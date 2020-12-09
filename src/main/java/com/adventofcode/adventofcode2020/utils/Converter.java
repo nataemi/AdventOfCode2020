@@ -1,5 +1,6 @@
 package com.adventofcode.adventofcode2020.utils;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -22,6 +23,9 @@ public class Converter {
         return string.chars().mapToObj(Character::toString).collect(Collectors.toList());
     }
 
+    public static List<BigInteger> convertToBigInteger(List<String> numbersAsString) {
+        return convertList(numbersAsString, s -> BigInteger.valueOf(Long.parseLong(s)));
+    }
 }
 
 
