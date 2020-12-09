@@ -10,6 +10,10 @@ public class Converter {
         return convertList(stringList, s -> Integer.parseInt(s));
     }
 
+    public static List<Long> converttoLong(List<String> stringList){
+        return convertList(stringList, s -> Long.parseLong(s));
+    }
+
     static <T, U> List<U> convertList(List<T> from, Function<T, U> func) {
         return from.stream().map(func).collect(Collectors.toList());
     }
