@@ -13,7 +13,7 @@ public class XMASValidator {
     public static long validate(String resource){
         List<String> numbersAsString = TxtFileReader.read(resource);
         List<Long> numbers = Converter.converttoLong(numbersAsString);
-        int preamble = 5;
+        int preamble = 25;
         List<Long> invalidNumbers = new ArrayList<>();
         for(int index=preamble;index < numbers.size(); index++){
             if(!validateNumber(preamble, index, numbers)) invalidNumbers.add(numbers.get(index));
@@ -50,7 +50,7 @@ public class XMASValidator {
         while(!rangeFound) {
             for (int index = 0; index < numbers.size() - rangeSize; index++) {
                 range = numbers.subList(index, index + rangeSize);
-                if(range.stream().reduce(BigInteger.ZERO, (a,b) -> a.add(b)).equals(invalidNumber)){
+                if(range.stream().reduce(BigInteger.ZERO, BigInteger::add).equals(invalidNumber)){
                     rangeFound = true;
                     break;
                 }
