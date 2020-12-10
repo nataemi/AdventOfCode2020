@@ -17,7 +17,7 @@ public class AdventOfCode2020Application {
 //        System.out.println(LuggageChecker.countHowManyBagsInGoldBag(RESOURCE));
 //          GameConsole.repairInstructions(RESOURCE);
 //         System.out.println(XMASValidator.findEncryptionWeakness(RESOURCE));
-        System.out.println(JoltageAdaptor.calculateJoltageDiff(RESOURCE));
+        System.out.println(JoltageAdaptor.waysToConnect(RESOURCE));
     }
 
 
