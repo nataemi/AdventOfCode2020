@@ -29,7 +29,7 @@ public class SeatSystem {
                 List<SeatStatus> nearbySeats = new ArrayList<>();
                 getNearbySeats(seatsModel, point, nearbySeats);
                 long countOccupied = getCountOccupied(nearbySeats);
-                if(seatsModel.get(point).equals(SeatStatus.OCCUPIED) && countOccupied >= 4) seatsAfterMix.put(point, SeatStatus.EMPTY);
+                if(seatsModel.get(point).equals(SeatStatus.OCCUPIED) && countOccupied >= 5) seatsAfterMix.put(point, SeatStatus.EMPTY);
                 else if(seatsModel.get(point).equals(SeatStatus.EMPTY) &&countOccupied == 0) seatsAfterMix.put(point, SeatStatus.OCCUPIED);
                 else seatsAfterMix.put(point,seatsModel.get(point));
         }
@@ -41,19 +41,26 @@ public class SeatSystem {
     }
 
     private static void getNearbySeats(Map<Point, SeatStatus> seatsModel, Point point, List<SeatStatus> nearbySeats) {
-        addNearbySeat(seatsModel, new Point(point.x-1, point.y), nearbySeats);
-        addNearbySeat(seatsModel, new Point(point.x+1, point.y), nearbySeats);
-        addNearbySeat(seatsModel, new Point(point.x-1, point.y-1), nearbySeats);
-        addNearbySeat(seatsModel, new Point(point.x-1, point.y+1), nearbySeats);
-        addNearbySeat(seatsModel, new Point(point.x+1, point.y-1), nearbySeats);
-        addNearbySeat(seatsModel, new Point(point.x+1, point.y+1), nearbySeats);
-        addNearbySeat(seatsModel, new Point(point.x, point.y+1), nearbySeats);
-        addNearbySeat(seatsModel, new Point(point.x, point.y-1), nearbySeats);
+        addNearbySeat(seatsModel, point, nearbySeats,0,1,0,0);
+        addNearbySeat(seatsModel, point, nearbySeats,0,0,1,0);
+        addNearbySeat(seatsModel, point, nearbySeats,0,1,0,1);
+        addNearbySeat(seatsModel, point, nearbySeats,1,1,0,0);
+        addNearbySeat(seatsModel, point, nearbySeats,0,0,1,1);
+        addNearbySeat(seatsModel, point, nearbySeats,1,0,1,0);
+        addNearbySeat(seatsModel, point, nearbySeats,1,0,0,0);
+        addNearbySeat(seatsModel, point, nearbySeats,0,0,0,1);
     }
 
-    private static void addNearbySeat(Map<Point, SeatStatus> seatsModel, Point point, List<SeatStatus> nearbySeats) {
-        if(seatsModel.containsKey(point))
-            nearbySeats.add(seatsModel.get(point));
+    private static void addNearbySeat(Map<Point, SeatStatus> seatsModel, Point point, List<SeatStatus> nearbySeats, int up, int left, int right, int down) {
+        point = new Point(point.x-left+right, point.y-down+up);
+        if(seatsModel.containsKey(point)) {
+            if (seatsModel.get(point).equals(SeatStatus.FLOOR)) { ;
+                addNearbySeat(seatsModel, point, nearbySeats, up, left, right, down);
+            }
+            else {
+                nearbySeats.add(seatsModel.get(point));
+            }
+        }
     }
 
     private static Map<Point, SeatStatus> convertRowStringsToOccupiedSeats(List<String> rowStrings) {
