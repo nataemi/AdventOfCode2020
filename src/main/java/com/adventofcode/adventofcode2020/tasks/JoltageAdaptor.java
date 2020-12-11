@@ -69,6 +69,9 @@ public class JoltageAdaptor {
 
     private static Map<Integer, List<Integer>> findPossibleConnectionsForEveryAdapter(List<Integer> adapters, int maxDiffBetweenAdapters) {
         Map<Integer, List<Integer>> possibleConnections = new HashMap<>();
+        for(int index = 0; index <= 0; index++){
+            
+        }
         for (int index = adapters.size() - 1; index >= 0; index--) {
             int previousAdapterIndex = index - 1;
             List<Integer> children = new ArrayList<>();
