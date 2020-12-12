@@ -9,14 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShipNavigation {
-    public static int navigate(String resource){
+    public static long navigate(String resource){
         List<String> actionStrings = TxtFileReader.read(resource);
         List<ShipAction> shipActions = convertActionStringsToActions(actionStrings);
         Ship ship = new Ship();
         for(ShipAction shipAction: shipActions){
-            ship.move(shipAction.getAction(), shipAction.getSteps());
+            ship.moveDependingOnWayPoint(shipAction.getAction(), shipAction.getSteps());
         }
-        return Math.abs(ship.getPosition().x) + Math.abs(ship.getPosition().y);
+        return (long)Math.abs(ship.getPosition().x) + (long)Math.abs(ship.getPosition().y);
     }
 
     private static List<ShipAction> convertActionStringsToActions(List<String> actionStrings) {
